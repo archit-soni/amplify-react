@@ -17,6 +17,14 @@ function callAPI(duration_secs, title){
   printTime(duration_secs);
 }
 
+function callDlt(){
+  let request = new XMLHttpRequest();
+    let url = "https://b5w37b1i11.execute-api.us-east-1.amazonaws.com/deleteMarker"
+    request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify({}));
+}
+
 function printTime(duration_secs) {
   let now = new Date();
   let hours = now.getHours();
@@ -99,10 +107,11 @@ height="auto"
 style={{border:'2px solid white'}}
 />
 <p></p>
-<h3 style={{display:'inline',color:'white',
-marginRight:500}}>MediaLive Output</h3><h3 style={{display:'inline',color:'white'}}>MediaTailor Output</h3>
+<h3 style={{display:'inline',paddingLeft:'12%',
+marginRight:500}}>MediaLive Output</h3><h3 style={{display:'inline', paddingLeft: '2%'}}>MediaTailor Output</h3>
 <p style={{display:'block'}}></p>
 <div className="file">
+  <button style={{marginRight:'2%'}} onClick={()=>callDlt()}>Cancel Ad</button>
           <input type="file" onChange={handleFileUpload}/>
           <div style={{border: "3px solid red", width:'fit-content', background:'black', color:'white', fontSize:24, padding:'0.5em', marginTop:'1%'}}>
           <div>Ads Fired at:</div><span id="time"></span></div>

@@ -17,6 +17,16 @@ function callAPI(duration_secs, title){
   printTime(duration_secs);
 }
 
+function change(){
+  let request = new XMLHttpRequest();
+  let url = "https://e30z366870.execute-api.us-east-1.amazonaws.com/change"
+  request.open("POST", url);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(JSON.stringify({}));
+  document.getElementById('changed').innerText = "Stop Auto Detect";
+}
+
+
 function callDlt(){
   let request = new XMLHttpRequest();
     let url = "https://b5w37b1i11.execute-api.us-east-1.amazonaws.com/deleteMarker"
@@ -34,6 +44,7 @@ function printTime(duration_secs) {
   let timeString = hours + ':' + minutes + ':' + seconds + " for " + duration_secs + " seconds";
 
   document.getElementById('time').innerText = timeString;
+
 }
 
 function App() {
@@ -111,6 +122,7 @@ style={{border:'2px solid white'}}
 marginRight:500}}>MediaLive Output</h3><h3 style={{display:'inline', paddingLeft: '2%'}}>MediaTailor Output</h3>
 <p style={{display:'block'}}></p>
 <div className="file">
+<button id = "changed" style={{marginRight:'2%'}} onClick={()=>change()}>Auto Detect Ads</button>
   <button style={{marginRight:'2%'}} onClick={()=>callDlt()}>Cancel Ad</button>
           <input type="file" onChange={handleFileUpload}/>
           <div style={{border: "3px solid red", width:'fit-content', background:'black', color:'white', fontSize:24, padding:'0.5em', marginTop:'1%'}}>
